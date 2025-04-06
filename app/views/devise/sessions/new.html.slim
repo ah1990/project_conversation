@@ -1,0 +1,51 @@
+- content_for :title, "Sign In"
+
+.min-h-screen.flex.items-center.justify-center.bg-gray-50.py-12.px-4.sm:px-6.lg:px-8
+  .max-w-md.w-full.space-y-8
+    div
+      h2.mt-6.text-center.text-3xl.font-extrabold.text-gray-900 Sign in to your account
+      p.mt-2.text-center.text-sm.text-gray-600
+        | Or 
+        = link_to "create a new account", new_registration_path(resource_name), class: "font-medium text-indigo-600 hover:text-indigo-500"
+
+    = form_for(resource, as: resource_name, url: session_path(resource_name), html: { class: "mt-8 space-y-6" }) do |f|
+      = f.hidden_field :remember_me, value: "1"
+      .rounded-md.shadow-sm.-space-y-px
+        .mb-4
+          = f.label :email, class: "sr-only"
+          = f.email_field :email, autofocus: true, autocomplete: "email", class: "appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-t-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm", placeholder: "Email address"
+        
+        div
+          = f.label :password, class: "sr-only"
+          = f.password_field :password, autocomplete: "current-password", class: "appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-b-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm", placeholder: "Password"
+
+      .flex.items-center.justify-between
+        - if devise_mapping.rememberable?
+          .flex.items-center
+            = f.check_box :remember_me, class: "h-4 w-4 text-indigo-600 focus:ring-indigo-500 border-gray-300 rounded"
+            = f.label :remember_me, class: "ml-2 block text-sm text-gray-900"
+        
+        - if devise_mapping.recoverable?
+          .text-sm
+            = link_to "Forgot your password?", new_password_path(resource_name), class: "font-medium text-indigo-600 hover:text-indigo-500"
+
+      div
+        = f.submit "Sign in", class: "group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+        
+    .mt-6
+      .relative
+        .absolute.inset-0.flex.items-center
+          .w-full.border-t.border-gray-300
+        .relative.flex.justify-center.text-sm
+          span.px-2.bg-gray-50.text-gray-500 Or continue with
+
+      .mt-6.grid.grid-cols-2.gap-3
+        = link_to "#", class: "w-full inline-flex justify-center py-2 px-4 border border-gray-300 rounded-md shadow-sm bg-white text-sm font-medium text-gray-500 hover:bg-gray-50" do
+          span.sr-only Sign in with Google
+          svg.w-5.h-5 viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"
+            path d="M12.48 10.92v3.28h7.84c-.24 1.84-.853 3.187-1.787 4.133-1.147 1.147-2.933 2.4-6.053 2.4-4.827 0-8.6-3.893-8.6-8.72s3.773-8.72 8.6-8.72c2.6 0 4.507 1.027 5.907 2.347l2.307-2.307C18.747 1.44 16.133 0 12.48 0 5.867 0 .307 5.387.307 12s5.56 12 12.173 12c3.573 0 6.267-1.173 8.373-3.36 2.16-2.16 2.84-5.213 2.84-7.667 0-.76-.053-1.467-.173-2.053H12.48z"
+        
+        = link_to "#", class: "w-full inline-flex justify-center py-2 px-4 border border-gray-300 rounded-md shadow-sm bg-white text-sm font-medium text-gray-500 hover:bg-gray-50" do
+          span.sr-only Sign in with GitHub
+          svg.w-5.h-5 viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"
+            path fill-rule="evenodd" clip-rule="evenodd" d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"

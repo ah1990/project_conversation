@@ -1,0 +1,26 @@
+li.px-4.py-4.sm:px-6
+  .flex.space-x-3
+    .flex-shrink-0
+      .h-10.w-10.rounded-full.bg-indigo-100.flex.items-center.justify-center
+        span.text-indigo-700.font-medium = user_initial
+    .min-w-0.flex-1
+      .flex.items-center.justify-between
+        p.text-sm.font-medium.text-indigo-600
+          = user_name
+          span.text-gray-500.ml-2.text-xs = time_ago
+        - if status_change?
+          span.inline-flex.items-center.px-2.5.py-0.5.rounded-full.text-xs.font-medium.bg-yellow-100.text-yellow-800 Status Change
+      
+      - if comment?
+        .mt-2.text-sm.text-gray-700
+          = content
+      - elsif status_change?
+        .mt-2
+          p.text-sm.text-gray-700
+            | Changed status from 
+            span.font-medium = from_status
+            |  to 
+            span.font-medium = to_status
+          - if reason.present?
+            p.mt-1.text-sm.text-gray-500
+              | Reason: #{reason}

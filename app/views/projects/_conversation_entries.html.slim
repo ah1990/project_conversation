@@ -1,0 +1,7 @@
+= turbo_frame_tag "conversation_entries" do
+  ul.divide-y.divide-gray-200
+    - if entries.any?
+      - entries.each do |entry|
+        = render(ConversationEntryComponent.new(entry: entry))
+    - else
+      li.px-4.py-5.text-center.text-gray-500 No conversation entries yet.

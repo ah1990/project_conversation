@@ -1,0 +1,5 @@
+= turbo_stream.replace "conversation_entries" do
+  = render "projects/conversation_entries", entries: @conversation_entries
+
+= turbo_stream.replace "comment_form" do
+  = render "projects/comment_form", project: @project, comment: Comment.new

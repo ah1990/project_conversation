@@ -1,1 +1,28 @@
-@import "tailwindcss";
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Custom styles for form elements */
+.form-input,
+.form-textarea,
+.form-select {
+  border: 2px solid #9ca3af !important; /* border-gray-400 */
+  border-radius: 0.375rem; /* rounded-md */
+  padding: 0.75rem 1rem; /* px-4 py-3 */
+}
+
+.form-input:focus,
+.form-textarea:focus,
+.form-select:focus {
+  border-color: #6366f1 !important; /* border-indigo-500 */
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.2); /* ring ring-indigo-200 ring-opacity-50 */
+}
+
+.form-label {
+  display: block;
+  font-size: 0.875rem; /* text-sm */
+  font-weight: 500; /* font-medium */
+  color: #374151; /* text-gray-700 */
+  margin-bottom: 0.25rem; /* mb-1 */
+}

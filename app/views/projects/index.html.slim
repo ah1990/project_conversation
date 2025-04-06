@@ -1,0 +1,30 @@
+- content_for :title, "Projects"
+
+.py-8
+  .flex.items-center.justify-between
+    h1.text-3xl.font-bold.text-gray-900 My Projects
+    = link_to "New Project", new_project_path, class: "bg-indigo-600 hover:bg-indigo-700 text-white px-4 py-2 rounded-md text-sm font-medium"
+
+.mt-6
+  - if @projects.any?
+    .overflow-hidden.bg-white.shadow.sm:rounded-md
+      ul.divide-y.divide-gray-200
+        - @projects.each do |project|
+          li
+            = link_to project_path(project), class: "block hover:bg-gray-50" do
+              .px-4.py-4.sm:px-6
+                .flex.items-center.justify-between
+                  .flex.min-w-0.flex-1.items-center
+                    .min-w-0.flex-1.px-4
+                      p.truncate.text-sm.font-medium.text-indigo-600 = project.title
+                      p.mt-2.flex.items-center.text-sm.text-gray-500
+                        span.truncate = truncate(project.description, length: 100)
+                  .ml-4.flex-shrink-0
+                    span.inline-flex.items-center.rounded-full.px-2.5.py-0.5.text-xs.font-medium class="#{project.status == 'completed' ? 'bg-green-100 text-green-800' : 'bg-blue-100 text-blue-800'}"
+                      = project.display_status
+  - else
+    .text-center.py-12
+      h3.text-lg.font-medium.text-gray-900 No projects yet
+      p.mt-1.text-sm.text-gray-500 Get started by creating a new project.
+      .mt-6
+        = link_to "Create your first project", new_project_path, class: "inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
