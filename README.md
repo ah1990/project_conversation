@@ -40,7 +40,7 @@ Deployed on fly.io - https://project-conversation.fly.dev
 
 ```bash
 # Clone the repository
-git clone https://github.com/yourusername/project_conversation.git
+git clone https://github.com/ah1990/project_conversation.git
 cd project_conversation
 
 # Install dependencies
